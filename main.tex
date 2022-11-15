@@ -5,7 +5,7 @@
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{tikz}
-\usepackage[paperwidth=40cm,paperheight=40cm,left=1cm,right=1cm,bottom=1cm,top=1cm]{geometry}
+\usepackage[paperwidth=37cm,paperheight=34cm,left=1cm,right=1cm,bottom=1cm,top=1cm]{geometry}
 \usetikzlibrary{mindmap,backgrounds}
 
 \pagestyle{empty}
@@ -37,21 +37,21 @@ child [concept color=red, level distance=9cm] { node [scale=1.4] {Classification
         child {node [scale=1.2] {Direct dark matter detectors}}
     }
 }
-child [concept color=red!50!purple, style={level distance=12cm}] {node  [scale=1.4] {Learning strategies} 
+child [concept color=red!50!purple, style={level distance=12cm}] {node  [scale=1.4] (ls) {Learning strategies} 
 	child {node (un) {Un-supervised}}
-	child {node {Weak/semi-supervision}}
+	child {node {Weak/semi-supervised}}
 	child {node {Hyper-parameter optimization}}
 	child {node {Reinforce-ment learning}}
 	child {node {Quantum machine learning}}
-	child {node {Feature ranking}}
+	child {node (fr) {Feature ranking}}
 	child {node {Attention}}
 	child {node {Regular-ization}}
 	child {node {Optimal transport}}
 	}
-child [concept color=red!50!violet, style={level distance=12cm}] { node [scale=1.4] {Fast inference}
+child [concept color=red!50!violet, style={level distance=12cm}] { node [scale=1.4] {Fast\\inference}
+	child { node (hal) {Hardware-aware learning}}
 	child { node  {Deployment}}
 	child { node  {Firmware/\\software}}
-	child { node  {Hardware codesign}}
 	child { node  {Knowledge distillation}}
 }
 child [concept color=violet, style={level distance=12cm}] { node (reg) [scale=1.4] {Regression}
@@ -64,7 +64,7 @@ child [concept color=violet, style={level distance=12cm}] { node (reg) [scale=1.
     child {node  {Function approximation}}
     child {node  {Symbolic regression}}
 }
-child [concept color=blue] { node [scale=1.4] {Decorrelation methods}
+child [concept color=blue] { node (deco) [scale=1.4] {Decorrelation methods}
 	child { node  {Adversarial training}}
 	child { node  {Quantile regression}}
 	}
@@ -82,15 +82,15 @@ child [concept color=teal] { node (ad) [scale=1.4] {Anomaly detection}
 child [concept color=teal!50!yellow, style={level distance=11cm}] { node [scale=1.4] {Simulation-based inference}
 child {node (pe) {Parameter estimation}}
 child {node {Unfolding}}
-child {node {Domain adaptation}}
+child {node (da) {Domain adaptation}}
 child {node {BSM physics}}
 child {node {Diff-erentiable simulation}}
 }
-child [concept color=yellow!50!orange, level distance=7.5cm] { node [scale=1.4] {Uncertainty quantification}
-child [sibling angle=50] {node {Inter-pretability}}
+child [concept color=yellow!50!orange, level distance=8cm] { node [scale=1.4] {Uncertainty quantification}
+child [sibling angle=50] {node (interp) {Inter-pretability}}
 child [sibling angle=50] {node {Estimation}}
 child [sibling angle=50] {node {Mitigation}}
-child [sibling angle=50] {node {Uncertainty-aware learning}}
+child [sibling angle=50] {node (ual) {Uncertainty-aware learning}}
 };
 \begin{pgfonlayer}{background}
     \path (gen) to[circle connection bar switch color=from (blue!50!teal) to (teal)] (ae);
@@ -98,6 +98,10 @@ child [sibling angle=50] {node {Uncertainty-aware learning}}
     \path (reg) to[circle connection bar switch color=from (violet) to (teal!50!yellow)] (pe);
     \path (gen) to[circle connection bar switch color=from (blue!50!teal) to (orange)] (pinn);
     \path (ad) to[circle connection bar switch color=from (teal) to (red!50!purple)] (un);
+    \path (deco) to[circle connection bar switch color=from (blue) to (teal!50!yellow)] (da);
+    \path (ls) to[circle connection bar switch color=from (red!50!purple) to (purple)] (hal);
+    \path (ls) to[circle connection bar switch color=from (red!50!purple) to (yellow!50!orange)] (ual);
+    \path (interp) to[circle connection bar switch color=from (yellow!50!orange) to (red!50!purple)] (fr);
 \end{pgfonlayer}
 \end{tikzpicture}
 \end{document}
