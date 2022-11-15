@@ -5,4 +5,4 @@
 
 
 Nomological Net for ML in Particle Physics
-![Nomological_Net_ML_Particle_Physics (5)](https://user-images.githubusercontent.com/4932543/201968489-447e552d-14d8-4c18-86d0-6186237af136.png)
+![Nomological_Net_ML_Particle_Physics (8)](https://user-images.githubusercontent.com/4932543/201989219-fa9d5686-ae54-428c-ac3f-57be076a0c9b.png)
