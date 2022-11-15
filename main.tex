@@ -5,40 +5,99 @@
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{tikz}
-\usepackage[paperwidth=20cm,paperheight=20cm,left=1cm,right=1cm,bottom=1cm,top=1cm]{geometry}
+\usepackage[paperwidth=40cm,paperheight=40cm,left=1cm,right=1cm,bottom=1cm,top=1cm]{geometry}
 \usetikzlibrary{mindmap,backgrounds}
 
 \pagestyle{empty}
 \begin{document}
-\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=black, text=white,
-	level 1/.append style={level distance=5.5cm,sibling angle=90},
-	level 2/.append style={level distance=3.5cm,sibling angle=90},]
+\begin{tikzpicture}[mindmap, grow cyclic, every node/.style=concept, concept color=black, text=white, scale=1,
+	level 1/.append style={level distance=8cm,sibling angle=36},
+	level 2/.append style={level distance=4cm,sibling angle=30},
+	level 3/.append style={level distance=4cm,sibling angle=28},
+	]
 
-\node [scale=1.2]{Machine learning\\in\\particle physics}
-child [concept color=blue!80] { node [scale=1.2] {Anomaly detection}
-	child { node [scale=1.2] {CWoLa}}
-	child { node [scale=1.2] {QUAK}}
-	child [concept color=blue!50!teal!80, scale=1.2] { node [scale=1.2] (vae) {Variational\\auto-\\encoders}}
-	child [concept color=blue!50!teal!80, scale=1.1] { node [scale=1.2] (nf) {Normalizing flows}}
+\node [scale=2] {Machine learning\\in\\particle physics}
+child [concept color=orange, style={level distance=13cm}] {node  [scale=1.4] {Represen-tations/\\Architectures} 
+	child [sibling angle=34] {node {Jet images}}
+	child [sibling angle=34] {node {Event images}}
+	child [sibling angle=34] {node {Sequences}}
+	child [sibling angle=34] {node {Trees}}
+	child [sibling angle=34] {node {Graphs}}
+	child [sibling angle=34] {node {Sets (point clouds)}}
+	child [sibling angle=34] {node {Equivariant models}}
+	child [sibling angle=34] {node (pinn) {Physics-inspired}}
+	}
+child [concept color=red, level distance=9cm] { node [scale=1.4] {Classification}
+    child {node  {Param-etrized classifiers} }
+    child [style={level distance=6.5cm}]{node [scale=1.4] {Targets}
+        child {node [scale=1.2] {Jet tagging}}
+        child {node [scale=1.2] {BSM physics}} 
+        child {node [scale=1.2] {Particle identification}} child {node {Cosmology, astro-, and cosmic-ray physics}}
+        child {node [scale=1.2] {Neutrino detectors}}
+        child {node [scale=1.2] {Direct dark matter detectors}}
+    }
 }
-child [concept color=teal!80] { node [scale=1.2] (gen) {Generative modeling}
-	child { node [scale=1.2] {Generative adversarial networks}}
-	child { node [scale=1.2] {Diffusion models}}
+child [concept color=red!50!purple, style={level distance=12cm}] {node  [scale=1.4] {Learning strategies} 
+	child {node (un) {Un-supervised}}
+	child {node {Weak/semi-supervision}}
+	child {node {Hyper-parameter optimization}}
+	child {node {Reinforce-ment learning}}
+	child {node {Quantum machine learning}}
+	child {node {Feature ranking}}
+	child {node {Attention}}
+	child {node {Regular-ization}}
+	child {node {Optimal transport}}
+	}
+child [concept color=red!50!violet, style={level distance=12cm}] { node [scale=1.4] {Fast inference}
+	child { node  {Deployment}}
+	child { node  {Firmware/\\software}}
+	child { node  {Hardware codesign}}
+	child { node  {Knowledge distillation}}
 }
-child [concept color=orange!80] { node [scale=1.2] {Novel\\architectures}
-	child { node {Graph neural networks}}
-	child { node [scale=1.2] {Deep sets}}
-	child { node [scale=1.2] {Trans-formers}}
-	child { node [scale=1.2] {Equivariant networks}}
+child [concept color=violet, style={level distance=12cm}] { node (reg) [scale=1.4] {Regression}
+    child {node  {Pileup} }
+    child {node  {Calibration} }
+    child {node  {Recasting} }
+    child {node  {Matrix elements} }
+    child {node  {Parton distribution functions}}
+    child {node  {Lattice guage theory}}
+    child {node  {Function approximation}}
+    child {node  {Symbolic regression}}
 }
-child [concept color=violet!80] { node [scale=1.2] {Fast inference}
-	child { node [scale=1.2] {FPGA\\deployment}}
-	child { node [scale=1.2] {Model\\compression}}
-	child { node [scale=1.2] {Codesign}}
+child [concept color=blue] { node [scale=1.4] {Decorrelation methods}
+	child { node  {Adversarial training}}
+	child { node  {Quantile regression}}
+	}
+child [concept color=blue!50!teal, style={level distance=11cm}] { node  (gen) [scale=1.4] {Generative modeling / density estimation}
+	child { node  {Diffusion models}}
+	child { node  {Mixture models}}
+	child { node  {Phase space generation}}
+	child { node  {Gaussian processes}}
+	child { node (gan) {Generative adversarial networks}}
+}
+child [concept color=teal] { node (ad) [scale=1.4] {Anomaly detection}
+	child [sibling angle=50] { node (nf) {Normalizing flows}}
+	child [sibling angle=50] { node (ae) {Auto-encoders}}
+	}
+child [concept color=teal!50!yellow, style={level distance=11cm}] { node [scale=1.4] {Simulation-based inference}
+child {node (pe) {Parameter estimation}}
+child {node {Unfolding}}
+child {node {Domain adaptation}}
+child {node {BSM physics}}
+child {node {Diff-erentiable simulation}}
+}
+child [concept color=yellow!50!orange, level distance=7.5cm] { node [scale=1.4] {Uncertainty quantification}
+child [sibling angle=50] {node {Inter-pretability}}
+child [sibling angle=50] {node {Estimation}}
+child [sibling angle=50] {node {Mitigation}}
+child [sibling angle=50] {node {Uncertainty-aware learning}}
 };
-    \path (gen) to[circle connection bar switch color=from (teal!80) to (blue!50!teal!80)] (vae);
-    \path (gen) to[circle connection bar switch color=from (teal!80) to (blue!50!teal!80)] (nf);
-    
-    
+\begin{pgfonlayer}{background}
+    \path (gen) to[circle connection bar switch color=from (blue!50!teal) to (teal)] (ae);
+    \path (gen) to[circle connection bar switch color=from (blue!50!teal) to (teal)] (nf);
+    \path (reg) to[circle connection bar switch color=from (violet) to (teal!50!yellow)] (pe);
+    \path (gen) to[circle connection bar switch color=from (blue!50!teal) to (orange)] (pinn);
+    \path (ad) to[circle connection bar switch color=from (teal) to (red!50!purple)] (un);
+\end{pgfonlayer}
 \end{tikzpicture}
 \end{document}
